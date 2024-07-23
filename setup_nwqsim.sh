@@ -1,7 +1,10 @@
-cd NWQ-Sim
-CURRDIR=$(pwd)
+
 git submodule init
 git submodule update
+cd NWQ-Sim
+git submodule init
+git submodule update
+CURRDIR=$(pwd)
 cd vqe/nlopt
 mkdir build; cd build
 cmake ..; make -j4
