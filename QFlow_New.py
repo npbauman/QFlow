@@ -354,8 +354,10 @@ def main():
 # ***************************************************************************************************************************
             print("Excuting {} --nparticles {} --hamiltonian {} > {}.out".format(nwq_path, nao*2 ,filename, filename))  
             os.system("{} --nparticles {} --hamiltonian {} > {}.out".format(nwq_path, nao*2, filename, filename))  
+            # Read the amplitude outputs from the NWQ-Sim files
             with open(filename + '.out') as amplitude_file:
                 output_string = amplitude_file.read()
+                # Dictionary mapping from XACC operator strings to amplitude values
                 amplitudes_result = [(i.strip(), float(j)) for (i, j) in pattern.findall(output_string)]
                 
 # ***************************************************************************************************************************
