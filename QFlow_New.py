@@ -6,9 +6,11 @@ from DUCC import *
 # from FCI import *
 import copy
 import sys
+import re
 import os
 np.set_printoptions(threshold=sys.maxsize)
 nwq_path = 'NWQ-Sim/build/vqe/nwq_qflow'
+pattern = re.compile(r'([\d\^\s]+):\s*([\d\.e\+-]+)')
 
 def read_Hamiltonian(file_name):
   
@@ -190,7 +192,6 @@ def main():
             for j in range(neles):
                 for b in range(nsvirt):
                     Master_T2_Excitations.append([a,b,i,j])
-    
     Master_T1_Amplitudes = np.zeros((nsvirt, neles))
     Master_T2_Amplitudes = np.zeros((nsvirt, nsvirt, neles, neles))
 
@@ -353,7 +354,10 @@ def main():
 # ***************************************************************************************************************************
             print("Excuting {} --nparticles {} --hamiltonian {} > {}.out".format(nwq_path, nao*2 ,filename, filename))  
             os.system("{} --nparticles {} --hamiltonian {} > {}.out".format(nwq_path, nao*2, filename, filename))  
-
+            with open(filename + '.out') as amplitude_file:
+                output_string = amplitude_file.read()
+                amplitudes_result = [(i.strip(), float(j)) for (i, j) in pattern.findall(output_string)]
+                
 # ***************************************************************************************************************************
 
 

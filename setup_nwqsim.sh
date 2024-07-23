@@ -2,7 +2,7 @@
 git submodule init
 git submodule update
 cd NWQ-Sim
-git checkout main
+git checkout dev/qflow
 git submodule init
 git submodule update
 CURRDIR=$(pwd)
