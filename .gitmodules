@@ -1,0 +1,3 @@
+[submodule "NWQ-Sim"]
+	path = NWQ-Sim
+	url = https://github.com/pnnl/NWQ-Sim.git

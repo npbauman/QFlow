@@ -8,7 +8,7 @@ import copy
 import sys
 import os
 np.set_printoptions(threshold=sys.maxsize)
-
+nwq_path = 'NWQ-Sim/build/vqe/nwq_qflow'
 
 def read_Hamiltonian(file_name):
   
@@ -351,8 +351,8 @@ def main():
                 f.write("({: 12.10f},0)".format(adjusted_rep_e))
 
 # ***************************************************************************************************************************
-            print("Excuting uccsd --n-orbitals {} --n-electrons {} --hamiltonian {} > {}.out".format(naso, nao*2 ,filename, filename))  
-            os.system("uccsd --n-orbitals {} --n-electrons {} --hamiltonian {} > {}.out".format(naso, nao*2, filename, filename))  
+            print("Excuting {} --nparticles {} --hamiltonian {} > {}.out".format(nwq_path, nao*2 ,filename, filename))  
+            os.system("{} --nparticles {} --hamiltonian {} > {}.out".format(nwq_path, nao*2, filename, filename))  
 
 # ***************************************************************************************************************************
 
